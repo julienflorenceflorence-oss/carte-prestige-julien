@@ -13,87 +13,62 @@
             --bg: #0A0B0D;
             --card-bg: #111418;
             --accent: #D4AF37;
-            --accent-light: #F7EF8A;
-            --accent-dark: #AD8A1F;
             --text: #F4F4F4;
             --text-dim: #999;
-            --glass: rgba(255, 255, 255, 0.03);
-            --gold-gradient: linear-gradient(135deg, var(--accent-dark), var(--accent-light), var(--accent-dark));
+            --gold-gradient: linear-gradient(135deg, #AD8A1F, #F7EF8A, #AD8A1F);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             background-color: var(--bg);
-            background-image: radial-gradient(circle at 50% -20%, #1a1f26, transparent);
             color: var(--text);
             font-family: 'Montserrat', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 40px 20px;
-            overflow-x: hidden;
+            padding: 20px;
         }
 
-        .prestige-card {
+        .zen-card {
             width: 100%;
-            max-width: 420px;
+            max-width: 380px;
             background: var(--card-bg);
-            border: 1px solid rgba(212, 175, 55, 0.15);
+            border: 1px solid rgba(212, 175, 55, 0.2);
             border-radius: 40px;
             overflow: hidden;
-            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.9);
-            position: relative;
-            backdrop-filter: blur(10px);
-            animation: cardEntrance 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+            text-align: center;
+            animation: fadeIn 1s ease-out;
         }
 
-        @keyframes cardEntrance {
-            from { opacity: 0; transform: scale(0.95) translateY(30px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .hero-section {
-            position: relative;
-            height: 220px;
+            height: 200px;
             overflow: hidden;
+            position: relative;
         }
 
         .hero-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.6) contrast(1.2) grayscale(0.2);
-            transition: transform 0.8s ease;
+            filter: brightness(0.7) contrast(1.1);
         }
 
         .hero-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, transparent 40%, var(--card-bg) 100%);
+            background: linear-gradient(to bottom, transparent, var(--card-bg));
         }
 
-        .profile-wrapper {
-            position: relative;
-            margin-top: -70px;
-            text-align: center;
-            z-index: 2;
-        }
-
-        .profile-img {
-            width: 130px;
-            height: 130px;
-            border-radius: 24px;
-            padding: 4px;
-            background: var(--gold-gradient);
-            object-fit: cover;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-        }
-
-        .main-content {
-            padding: 25px 35px 50px;
-            text-align: center;
+        .content {
+            padding: 30px 40px 50px;
         }
 
         h1 {
@@ -104,230 +79,78 @@
             font-size: 1.8rem;
             letter-spacing: 4px;
             text-transform: uppercase;
-            margin-bottom: 8px;
-            font-weight: 700;
-        }
-
-        .job-title {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--accent);
-            font-weight: 600;
             margin-bottom: 5px;
         }
 
-        .company-name {
-            font-size: 0.85rem;
-            color: var(--text-dim);
-            margin-bottom: 30px;
+        .tagline {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent);
+            margin-bottom: 40px;
+            opacity: 0.8;
         }
 
-        .qr-container {
+        .qr-wrapper {
             background: white;
             padding: 15px;
             border-radius: 25px;
             display: inline-block;
-            margin-bottom: 35px;
-            position: relative;
-            box-shadow: 0 0 40px rgba(212, 175, 55, 0.1);
-            line-height: 0;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: 0.3s;
         }
 
-        #qr-canvas {
-            width: 200px;
-            height: 200px;
+        .qr-wrapper:hover {
+            transform: scale(1.05);
+        }
+
+        .qr-img {
+            width: 180px;
+            height: 180px;
             display: block;
         }
 
-        .actions {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            width: 100%;
-        }
-
-        .btn {
-            display: block;
-            padding: 16px;
-            text-decoration: none;
-            font-family: 'Cinzel', serif;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border-radius: 14px;
-            transition: all 0.3s ease;
-            text-align: center;
-            font-weight: 700;
-            cursor: pointer;
-            border: none;
-        }
-
-        .btn-primary {
-            background: var(--gold-gradient);
-            color: #000;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            filter: brightness(1.1);
-            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
-        }
-
-        .btn-outline {
-            background: transparent;
+        .btn-minimal {
+            display: inline-block;
+            padding: 15px 30px;
             border: 1px solid var(--accent);
             color: var(--accent);
-        }
-
-        .btn-outline:hover {
-            background: rgba(212, 175, 55, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .footer {
-            margin-top: 40px;
-            font-size: 0.6rem;
-            color: var(--text-dim);
-            letter-spacing: 4px;
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            opacity: 0.4;
+            letter-spacing: 2px;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+
+        .btn-minimal:hover {
+            background: var(--accent);
+            color: #000;
         }
     </style>
 </head>
 <body>
 
-    <div class="prestige-card" id="capture">
+    <div class="zen-card">
         <div class="hero-section">
             <img src="cerveau 3.0.png" alt="Innovation" class="hero-img">
             <div class="hero-overlay"></div>
         </div>
 
-        <div class="profile-wrapper">
-            <img src="photo moi pro.jpeg" alt="Julien FLORENCE" class="profile-img">
-        </div>
-
-        <div class="main-content">
+        <div class="content">
             <h1>Julien FLORENCE</h1>
-            <div class="job-title">Directeur du développement commercial</div>
-            <div class="company-name">CERCLE ORIGINE / Happy House</div>
+            <div class="tagline">Stratégie & Innovation</div>
 
-            <div class="qr-container">
-                <canvas id="qr-canvas"></canvas>
+            <div class="qr-wrapper">
+                <img src="site julien.png" alt="QR Code" class="qr-img">
             </div>
 
-            <div class="actions">
-                <button class="btn btn-primary" onclick="downloadAsPNG()">Télécharger la Carte (PNG)</button>
-                <a href="https://www.my-happy.house/" class="btn btn-outline" target="_blank">Découvrir le site</a>
-                <button class="btn btn-outline" onclick="downloadVCard()">Enregistrer Contact</button>
-            </div>
-
-            <div class="footer">Édition Prestige • 2026</div>
+            <br>
+            <a href="https://www.my-happy.house/" class="btn-minimal">Visiter le site</a>
         </div>
     </div>
-
-<script>
-    const siteLink = "https://www.my-happy.house/";
-
-    // Génération du QR Code locale
-    window.onload = function() {
-        try {
-            if (typeof QRious !== 'undefined') {
-                new QRious({
-                    element: document.getElementById('qr-canvas'),
-                    value: siteLink,
-                    size: 500,
-                    level: 'H'
-                });
-            } else {
-                console.error("La bibliothèque QRious n'est pas chargée.");
-            }
-        } catch (e) {
-            console.error("Erreur lors de la génération du QR Code:", e);
-        }
-    };
-
-    function downloadAsPNG() {
-        const element = document.getElementById('capture');
-        const actions = element.querySelector('.actions');
-        
-        if (typeof html2canvas === 'undefined') {
-            alert("Erreur : La bibliothèque de capture (html2canvas) n'est pas chargée. Vérifiez votre connexion internet.");
-            return;
-        }
-
-        // Cacher les boutons pour la capture
-        actions.style.visibility = 'hidden';
-
-        // Petit délai pour s'assurer que l'UI est mise à jour
-        setTimeout(() => {
-            html2canvas(element, {
-                scale: 2, // Réduit légèrement pour éviter les plantages mémoire sur mobile
-                backgroundColor: '#0A0B0D',
-                logging: true,
-                useCORS: true,
-                allowTaint: true, // Crucial pour les fichiers locaux
-                scrollY: -window.scrollY // Gère le scroll éventuel
-            }).then(canvas => {
-                try {
-                    const link = document.createElement('a');
-                    link.download = 'Carte_Julien_FLORENCE_Prestige.png';
-                    link.href = canvas.toDataURL('image/png');
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                } catch (e) {
-                    console.error("Erreur lors de l'export PNG:", e);
-                    alert("Le navigateur bloque l'exportation de l'image pour des raisons de sécurité locale. Essayez d'ouvrir ce fichier via un serveur local ou un navigateur différent.");
-                }
-                actions.style.visibility = 'visible';
-            }).catch(err => {
-                console.error("Erreur html2canvas:", err);
-                alert("Erreur lors de la capture : " + err.message);
-                actions.style.visibility = 'visible';
-            });
-        }, 100);
-    }
-
-    function downloadVCard() {
-        try {
-            const vcard = [
-                "BEGIN:VCARD",
-                "VERSION:3.0",
-                "FN:Julien FLORENCE",
-                "N:FLORENCE;Julien;;;",
-                "ORG:CERCLE ORIGINE / Happy House",
-                "TITLE:Directeur du développement commercial",
-                "TEL;TYPE=CELL,VOICE:0661747573",
-                "EMAIL;TYPE=PREF,INTERNET:julienflorence.florence@gmail.com",
-                "URL;TYPE=WORK:" + siteLink,
-                "NOTE:Édition Prestige - Innovation & Stratégie",
-                "END:VCARD"
-            ].join("\n");
-
-            const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
-            
-            // Méthode compatible navigateurs modernes et mobiles
-            if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-                window.navigator.msSaveOrOpenBlob(blob, "Julien_FLORENCE.vcf");
-            } else {
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.style.display = 'none';
-                a.href = url;
-                a.download = "Julien_FLORENCE.vcf";
-                document.body.appendChild(a);
-                a.click();
-                setTimeout(() => {
-                    document.body.removeChild(a);
-                    window.URL.revokeObjectURL(url);
-                }, 100);
-            }
-        } catch (e) {
-            alert("Erreur lors de la création du contact : " + e.message);
-        }
-    }
-</script>
 
 </body>
 </html>
